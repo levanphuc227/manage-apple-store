@@ -233,7 +233,7 @@ const GroupProduct = () => {
                                     name='value'
                                     placeholder='value'
                                     onChange={event => handleFormChange(event, index)}
-                                    value={form.value}
+                                    value={form.age}
                                 />
                                 <input
                                     name='unit'

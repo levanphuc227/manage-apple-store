@@ -27,31 +27,28 @@ const ProductDetail = () => {
 
     console.log('param', param)
     const [options, setOptions] = useState([]);
-    const [isAddKeyOption, setIsAddKeyOption] = useState([0]);
+    const [isAddKeyOption, setIsAddKeyOption] = useState(1);
 
     useEffect(() => {
         OptionService.getOptionByGroupProduct(groupProductId).then((response) => {
             setOptions(response.data);
+            setIsAddKeyOption(response.data);
         });
-    },[groupProductId]);
-    
-    
-    useEffect( () => {
-        const newOptions =[...options]
+    }, [groupProductId]);
+
+
+    useEffect(() => {
+        const newOptions = [...options]
         newOptions.forEach(newOption => {
             newOption.value = '';
-        }); 
-        console.log("🚀 ~ file: index.js:41 ~ useEffect ~ newOptions", newOptions)
-        
+        });
         setOptions(newOptions);
         setIsAddKeyOption(1);
-        },[isAddKeyOption]);
+    }, [isAddKeyOption]);
 
-    console.log('options', options);
-    console.log("🚀 ~ file: index.js:49 ~ ProductDetail ~ options", options)
     const handleFormChange = (event, index) => {
         let data = [...options];
-        data[index][event.target.name] = event.target.value;
+        data[index]['value'] = event.target.value;
         setOptions(data);
     }
 
@@ -152,7 +149,7 @@ const ProductDetail = () => {
                     </div>
 
                     {options.map((form, index) => {
-                        
+
                         console.log('form', form)
                         return (
                             <>
@@ -160,12 +157,12 @@ const ProductDetail = () => {
                                     <div className="form-group">
                                         <label htmlFor={form.name}>{form.name}</label>
                                         <input
-                                            type="text"
-                                            className="form-control"
+                                            name={form.name}
                                             placeholder={form.name}
                                             onChange={event => handleFormChange(event, index)}
                                             value={form.value}
-                                        />
+                                            className="form-control"
+                                            />
                                     </div>
                                 </div>
                             </>
