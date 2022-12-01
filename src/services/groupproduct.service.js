@@ -11,7 +11,7 @@ const create = (category,
   services,
   specific,
 ) => {
-  return axios.post(API_URL + "v1/admin/groupproduct", {
+  return axios.post(API_URL + "v1/auth/admin/groupproduct", {
     'categoryId': category,
     name,
     price,

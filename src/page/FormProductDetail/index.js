@@ -27,48 +27,28 @@ const ProductDetail = () => {
 
     console.log('param', param)
     const [options, setOptions] = useState([]);
+    const [isAddKeyOption, setIsAddKeyOption] = useState([0]);
 
     useEffect(() => {
         OptionService.getOptionByGroupProduct(groupProductId).then((response) => {
             setOptions(response.data);
         });
-    },[]);
-    //https://stackoverflow.com/questions/59884278/add-key-value-pair-to-existing-array-of-objects
-    useEffect(() => {
-        // Since can't use an async func directly with useEffect -
-        // define an async func to handle your updates and call it within the useEffect func
-        const updateOption = async () => {
-            // Create a new array for your updated state
-            const updatedOptions = [];
+    },[groupProductId]);
     
-            // Loop over your values inline so your can await results to make them sync
-            for (let index = 0; index < options.length; index ++) {
-                const option = options[index];
-                // const newVal = await returnNewValueForNewKeyFunction(option, index);
     
-                // Create a shallow copy of the original value and add the newValue
-                updatedOptions[index] = { ...option, 'value': '' };
-                // ... Any other logic you need
-            }
-    
-            // Call set with the updated value so React knows to re-render
-            setOptions(updatedOptions);
-        };
-    
-        // Trigger your async update
-        updateOption();
-    }, [])
+    useEffect( () => {
+        const newOptions =[...options]
+        newOptions.forEach(newOption => {
+            newOption.value = '';
+        }); 
+        console.log("🚀 ~ file: index.js:41 ~ useEffect ~ newOptions", newOptions)
+        
+        setOptions(newOptions);
+        setIsAddKeyOption(1);
+        },[isAddKeyOption]);
 
-    // const optionsCopy = [...options];
-    // //Logic to update your list here
-    // optionsCopy[index]['value'] = '';
-    // setOptions(optionsCopy)
-    // options.map(i=>({...i,value:''}))
-
-    // const [options, setOptions] = useState([
-    //     { id: '',name:'', value: '',unit:''},
-    // ])
     console.log('options', options);
+    console.log("🚀 ~ file: index.js:49 ~ ProductDetail ~ options", options)
     const handleFormChange = (event, index) => {
         let data = [...options];
         data[index][event.target.name] = event.target.value;
@@ -182,7 +162,7 @@ const ProductDetail = () => {
                                         <input
                                             type="text"
                                             className="form-control"
-                                            id={form.id}
+                                            placeholder={form.name}
                                             onChange={event => handleFormChange(event, index)}
                                             value={form.value}
                                         />
