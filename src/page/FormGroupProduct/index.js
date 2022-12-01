@@ -222,20 +222,23 @@ const GroupProduct = () => {
                     </div>
                     {options.map((form, index) => {
                         return (
-                            <div key={index}>
+                            <div className="form__option" key={index}>
                                 <input
+                                    spellCheck={false}
                                     name='name'
                                     placeholder='name'
                                     onChange={event => handleFormChange(event, index)}
                                     value={form.name}
                                 />
                                 <input
+                                    spellCheck={false}
                                     name='value'
                                     placeholder='value'
                                     onChange={event => handleFormChange(event, index)}
                                     value={form.age}
                                 />
                                 <input
+                                    spellCheck={false}
                                     name='unit'
                                     placeholder='unit'
                                     onChange={event => handleFormChange(event, index)}
