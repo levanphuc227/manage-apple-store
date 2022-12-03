@@ -19,8 +19,8 @@ const ManageProductDetail = () => {
 
     const params = useParams();
     let navigate = useNavigate();
-    const id = params.id
 
+    const [id, setId] = useState([params.id]);
     const [listProductDetail, setListProductDetail] = useState([]);
     const [inforProduct, setInforProduct] = useState([]);
     const [listOption, setListOption] = useState([]);
@@ -30,14 +30,15 @@ const ManageProductDetail = () => {
         GroupProductService.getOne(id).then((response) => {
             setListProductDetail(response.data.product_details);
             setListOption(response.data.options);
-        });
-    });
-    useEffect(() => {
-
-        GroupProductService.getOne(id).then((response) => {
             setInforProduct(response.data);
         });
-    });
+    },[id]);
+    // useEffect(() => {
+        
+    //     GroupProductService.getOne(id).then((response) => {
+    //         setInforProduct(response.data);
+    //     });
+    // });
     // useEffect(() => {
     //     OptionService.getOptionByGroupProduct(id).then((response) => {
     //         setListOption(response.data);
@@ -69,7 +70,7 @@ const ManageProductDetail = () => {
                         listProductDetail.map((productDetail, index) => {
 
                             return (
-                                <tr>
+                                <tr key={index}>
                                     <th scope="row">{index}</th>
                                     {/* <td>{productDetail.image[1, 12]}</td> */}
                                     <td>{productDetail.image.slice(0, 20)}</td>

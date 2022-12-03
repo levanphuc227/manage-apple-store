@@ -32,19 +32,24 @@ const ProductDetail = () => {
     useEffect(() => {
         OptionService.getOptionByGroupProduct(groupProductId).then((response) => {
             setOptions(response.data);
-            setIsAddKeyOption(response.data);
+            const newOptions = [...response.data]
+            newOptions.forEach(newOption => {
+                newOption.value = '';
+            });
+            setOptions(newOptions);
+
         });
     }, [groupProductId]);
 
 
-    useEffect(() => {
-        const newOptions = [...options]
-        newOptions.forEach(newOption => {
-            newOption.value = '';
-        });
-        setOptions(newOptions);
-        setIsAddKeyOption(1);
-    }, [isAddKeyOption]);
+    // useEffect(() => {
+    //     const newOptions = [...options]
+    //     newOptions.forEach(newOption => {
+    //         newOption.value = '';
+    //     });
+    //     setOptions(newOptions);
+    //     setIsAddKeyOption(1);
+    // }, [isAddKeyOption]);
 
     const handleFormChange = (event, index) => {
         let data = [...options];

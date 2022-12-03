@@ -71,7 +71,6 @@ const ManageProductDetail = () => {
                         <th scope="col">quantity</th>
                         <th scope="col">subtotal</th>
                         <th scope="col">option</th>
-                        <th scope="col">Handle</th>
                     </tr>
                 </thead>
                 <tbody>
