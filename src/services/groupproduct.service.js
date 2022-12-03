@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api/";
+const API_URL =process.env.REACT_APP_API_URL;
 
-const create = (category,
+const create = (
+  category,
   name,
   price,
   image,
@@ -11,6 +12,14 @@ const create = (category,
   services,
   specific,
 ) => {
+  console.log( category,
+    name,
+    price,
+    image,
+    option,
+    description,
+    services,
+    specific,)
   return axios.post(API_URL + "v1/auth/admin/groupproduct", {
     'categoryId': category,
     name,

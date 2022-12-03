@@ -4,12 +4,16 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
+import styles from './ManageGroupProduct.module.scss'
+import classNames from 'classnames/bind';
+
 import FormGroupProduct from '../FormGroupProduct';
 import CategoryService from "../../services/category.service";
 import GroupProductService from "../../services/groupproduct.service";
 
 
 
+let cx = classNames.bind(styles);
 
 
 
@@ -40,6 +44,9 @@ const GroupProduct = () => {
                         <th scope="col">image</th>
                         <th scope="col">name</th>
                         <th scope="col">price</th>
+                        {/* <th scope="col">description</th> */}
+                        {/* <th scope="col">price</th> */}
+                        {/* <th scope="col">services</th> */}
                         <th scope="col">Handle</th>
                     </tr>
                 </thead>
@@ -53,8 +60,11 @@ const GroupProduct = () => {
                                     <td>{groupProduct.image[1, 12]}</td>
                                     <td>{groupProduct.name}</td>
                                     <td>{groupProduct.price}</td>
+                                    {/* <td>{groupProduct.description}</td> */}
+
+                                    {/* <td >{groupProduct.services}</td> */}
                                     <td>
-                                        <button type="button" class="btn btn-primary" onClick={()=>{navigate(`${groupProduct.id}`)}}>preview</button>
+                                        <button type="button" class="btn btn-primary" onClick={() => { navigate(`${groupProduct.id}`) }}>preview</button>
                                         <button type="button" class="btn btn-primary">update</button>
                                         <button type="button" class="btn btn-danger">delete</button>
 
@@ -67,7 +77,7 @@ const GroupProduct = () => {
                 </tbody>
             </table>
             <button type="button" class="btn btn-primary" onClick={routeChange}>Create group product</button>
-            
+
         </>
 
     )

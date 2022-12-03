@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import CategoryService from "../../services/category.service";
 import GroupProductService from "../../services/groupproduct.service";
@@ -16,9 +18,6 @@ const required = (value) => {
         );
     }
 };
-
-
-
 
 
 const GroupProduct = () => {
@@ -81,6 +80,7 @@ const GroupProduct = () => {
 
     const onChangeCategory = (event) => {
         const category = event.target.value
+        console.log(category);
         setCategory(category)
     }
 
@@ -144,6 +144,7 @@ const GroupProduct = () => {
             setLoading(false);
         }
     };
+
     return (
         <div className="col-md-12">
             <div className="card card-container">
@@ -151,12 +152,14 @@ const GroupProduct = () => {
 
 
                 <Form onSubmit={handleSubmit} ref={form}>
-                {/* <Form  ref={form}> */}
+                    {/* <Form  ref={form}> */}
                     <div className="form-group">
                         <label htmlFor="name">category</label>
-                        <select value={category} onChange={onChangeCategory}>
+                        <select class="form-select" value={category} onChange={onChangeCategory}>
+                        <option selected disabled>select category</option>
                             {
                                 listCategory.map(category => {
+                                    console.log(category)
 
                                     return <option value={category.id}>{category.name} </option>
                                 })
@@ -186,7 +189,7 @@ const GroupProduct = () => {
                             validations={[required]}
                         />
                     </div>
-
+                    {/* 
                     <div className="form-group">
                         <label htmlFor="description">description</label>
                         <Input
@@ -197,6 +200,29 @@ const GroupProduct = () => {
                             onChange={onChangeDescription}
                             validations={[required]}
                         />
+                    </div> */}
+                    <div className="form-group">
+                        <label htmlFor="description">description</label>
+
+                        <CKEditor
+                    editor={ ClassicEditor }
+                    data=""
+                    onReady={ editor => {
+                        // You can store the "editor" and use when it is needed.
+                        console.log( 'Editor is ready to use!', editor );
+                    } }
+                    onChange={ ( event, editor ) => {
+                        const data = editor.getData();
+                        console.log( { event, editor, data } );
+                        setDescription(data);
+                    } }
+                    onBlur={ ( event, editor ) => {
+                        console.log( 'Blur.', editor );
+                    } }
+                    onFocus={ ( event, editor ) => {
+                        console.log( 'Focus.', editor );
+                    } }
+                />
                     </div>
                     <div className="form-group">
                         <label htmlFor="price">price</label>
@@ -251,7 +277,7 @@ const GroupProduct = () => {
                     <button type="button" onClick={addOptions}>Add More..</button>
                     <br />
                     <div className="form-group">
-                        <button  className="btn btn-primary btn-block" disabled={loading}>
+                        <button className="btn btn-primary btn-block" disabled={loading}>
                             {loading && (
                                 <span className="spinner-border spinner-border-sm"></span>
                             )}

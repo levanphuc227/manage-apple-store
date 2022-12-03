@@ -22,6 +22,7 @@ const ManageProductDetail = () => {
     const id = params.id
 
     const [listProductDetail, setListProductDetail] = useState([]);
+    const [inforProduct, setInforProduct] = useState([]);
     const [listOption, setListOption] = useState([]);
 
     useEffect(() => {
@@ -29,6 +30,12 @@ const ManageProductDetail = () => {
         GroupProductService.getOne(id).then((response) => {
             setListProductDetail(response.data.product_details);
             setListOption(response.data.options);
+        });
+    });
+    useEffect(() => {
+
+        GroupProductService.getOne(id).then((response) => {
+            setInforProduct(response.data);
         });
     });
     // useEffect(() => {
@@ -43,7 +50,9 @@ const ManageProductDetail = () => {
     }
     return (
         <>
-            <h1>page product detail</h1>
+            <h1>Page product detail</h1>
+            <h2>Product name: {inforProduct.name}</h2>
+
             <table className="table">
 
                 <thead>
@@ -63,7 +72,7 @@ const ManageProductDetail = () => {
                                 <tr>
                                     <th scope="row">{index}</th>
                                     {/* <td>{productDetail.image[1, 12]}</td> */}
-                                    <td>{productDetail.image.slice(0,20)}</td>
+                                    <td>{productDetail.image.slice(0, 20)}</td>
                                     <td>{productDetail.price}</td>
                                     <td>
                                         <ul>
@@ -89,7 +98,8 @@ const ManageProductDetail = () => {
                 </tbody>
             </table>
             <button type="button" className="btn btn-primary" onClick={routeChange}>Create product detail</button>
-
+            <h2>description:</h2>
+            <div dangerouslySetInnerHTML={{ __html: inforProduct.description }} />
         </>
     )
 };

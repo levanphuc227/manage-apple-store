@@ -48,7 +48,7 @@ const Login = () => {
     if (checkBtn.current.context._errors.length === 0) {
       CategoryService.create(category, description).then(
         () => {
-          navigate("/");
+          navigate("/managecategory");
           window.location.reload();
         },
         (error) => {
