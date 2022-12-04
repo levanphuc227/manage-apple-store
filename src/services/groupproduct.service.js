@@ -12,14 +12,7 @@ const create = (
   services,
   specific,
 ) => {
-  console.log( category,
-    name,
-    price,
-    image,
-    option,
-    description,
-    services,
-    specific,)
+
   return httpRequest.post("/api/v1/auth/admin/groupproduct", {
     'categoryId': category,
     name,
@@ -32,17 +25,13 @@ const create = (
   });
 };
 
-const getAll = () => {
-  return httpRequest.get("/api/v1/groupproducts")
-    .then((response) => {
-      return response.data;
-    });
+const getAll = async () => {
+  const response = await httpRequest.get("/api/v1/groupproducts");
+  return response.data;
 };
-const getOne = (id) => {
-  return httpRequest.get(`/api/v1/groupproduct/${id}`)
-    .then((response) => {
-      return response.data;
-    });
+const getOne = async (id) => {
+  const response = await httpRequest.get(`/api/v1/groupproduct/${id}`);
+  return response.data;
 };
 
 

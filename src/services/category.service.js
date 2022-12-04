@@ -10,11 +10,9 @@ const create = (name, description ) => {
     description,
   });
 };
-const getAll = ( ) => {
-  return httpRequest.get("/api/v1/categorys")
-  .then((response) =>{
-    return response.data;
-  });
+const getAll = async ( ) => {
+  const response = await httpRequest.get("/api/v1/categorys");
+  return response.data;
 };
 
 

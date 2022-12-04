@@ -27,7 +27,6 @@ const ProductDetail = () => {
 
     console.log('param', param)
     const [options, setOptions] = useState([]);
-    const [isAddKeyOption, setIsAddKeyOption] = useState(1);
 
     useEffect(() => {
         OptionService.getOptionByGroupProduct(groupProductId).then((response) => {
@@ -124,9 +123,7 @@ const ProductDetail = () => {
 
 
                 <Form onSubmit={handleSubmit} ref={form}>
-                    <div className="form-group">
-
-                    </div>
+                   
 
                     <div className="form-group">
                         <label htmlFor="Link image">Link image</label>
@@ -167,7 +164,7 @@ const ProductDetail = () => {
                                             onChange={event => handleFormChange(event, index)}
                                             value={form.value}
                                             className="form-control"
-                                            />
+                                        />
                                     </div>
                                 </div>
                             </>

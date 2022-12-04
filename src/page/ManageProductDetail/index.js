@@ -1,14 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
 
-import FormGroupProduct from '../FormGroupProduct';
-import CategoryService from "../../services/category.service";
-import OptionService from "../../services/option.service";
+
+
 import GroupProductService from "../../services/groupproduct.service";
-import { Route, Link, Routes, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 
 
@@ -20,7 +16,7 @@ const ManageProductDetail = () => {
     const params = useParams();
     let navigate = useNavigate();
 
-    const [id, setId] = useState([params.id]);
+    const id= params.id;
     const [listProductDetail, setListProductDetail] = useState([]);
     const [inforProduct, setInforProduct] = useState([]);
     const [listOption, setListOption] = useState([]);
@@ -73,7 +69,7 @@ const ManageProductDetail = () => {
                                 <tr key={index}>
                                     <th scope="row">{index}</th>
                                     {/* <td>{productDetail.image[1, 12]}</td> */}
-                                    <td>{productDetail.image.slice(0, 20)}</td>
+                                    <td> <img src={productDetail.image} alt={inforProduct.name}/></td>
                                     <td>{productDetail.price}</td>
                                     <td>
                                         <ul>

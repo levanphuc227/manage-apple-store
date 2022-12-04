@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
 // import styles from './ManageOrder.module.scss'
 // import classNames from 'classnames/bind';
 
@@ -16,21 +17,58 @@ import OrderService from "../../services/order.service.js";
 const Orders = () => {
 
     const [listOrders, setListOrders] = useState([]);
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [status, setStatus] = useState('');
 
     useEffect(() => {
-        OrderService.getAll().then((response) => {
+        OrderService.getAll(phoneNumber,status).then((response) => {
             setListOrders(response.data);
         });
-    }, []);
+    }, [phoneNumber,status]);
     console.log(listOrders)
     let navigate = useNavigate();
-    const routeChange = () => {
-        let path = `addOrder`;
-        navigate(path);
+
+    const onChangePhoneNumber = (e) => {
+        return setPhoneNumber(e.target.value)
     }
+    const onChangeStatus = (e) => {
+        setStatus(e.target.value);
+    };
+    const listStatus = [
+        { id: 0,orderStatusName: "cancel" },
+        { id: 1, orderStatusName: "spendding" },
+        { id: 2, orderStatusName: "confirm" },
+        { id: 3,  orderStatusName: "send" },
+        { id: 4,orderStatusName: "complete" },
+    ]
     return (
         <>
             <h1>Manage Order</h1>
+            <Form>
+                <div className="form-group">
+                    <label htmlFor="search by phone number">Phone number</label>
+                    <Input
+                        type="text"
+                        className="form-control"
+                        name="numberphone"
+                        value={phoneNumber}
+                        onChange={onChangePhoneNumber}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="name">Status order</label>
+                    <select class="form-select" value={status} onChange={onChangeStatus}>
+                        return <option value='' selected>alll </option>
+                        {
+                            listStatus.map(statusSelect => {
+
+                                return <option value={statusSelect.orderStatusName}>{statusSelect.orderStatusName} </option>
+                            })
+                        }
+                    </select>
+                </div>
+
+            </Form>
             <table className="table">
 
                 <thead>

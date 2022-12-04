@@ -22,7 +22,7 @@ import { useEffect, useState } from "react";
 
 function App() {
 
-  const [showModeratorBoard, setShowModeratorBoard] = useState(false);
+  // const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
 
@@ -31,7 +31,7 @@ function App() {
 
     if (user) {
       setCurrentUser(user);
-      setShowModeratorBoard(user.listRules.includes("ROLE_MODERATOR"));
+      // setShowModeratorBoard(user.listRules.includes("ROLE_MODERATOR"));
       setShowAdminBoard(user.listRules.includes("ROLE_ADMIN"));
     }
 
@@ -46,7 +46,7 @@ function App() {
 
   const logOut = () => {
     AuthService.logout();
-    setShowModeratorBoard(false);
+    // setShowModeratorBoard(false);
     setShowAdminBoard(false);
     setCurrentUser(undefined);
   };
@@ -62,9 +62,11 @@ function App() {
       <Router>
         <ul className="nav__category">
           <li><Link to="/">Home</Link></li>
-          <li><Link to="managecategory">Manage category</Link></li>
+          {showAdminBoard?(<><li><Link to="managecategory">Manage category</Link></li>
           <li><Link to="manageGroupProduct">Manage group product</Link></li>
-          <li><Link to="manageorder">Manage order</Link></li>
+          <li><Link to="manageorder">Manage order</Link></li></>):(<></>)}
+          
+
           {/* <li><Link to="login">Login</Link></li> */}
           {currentUser ? (
             <div className="navbar-nav ml-auto">

@@ -1,16 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState,  useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
 
-import FormGroupProduct from '../FormGroupProduct';
 import CategoryService from "../../services/category.service";
-import GroupProductService from "../../services/groupproduct.service";
-
-
-
-
 
 
 const GroupProduct = () => {

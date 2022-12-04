@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import OrderService from "../../services/order.service";
-import { Route, Link, Routes, useParams } from 'react-router-dom';
+import {  useParams } from 'react-router-dom';
 
 
 
@@ -15,10 +15,10 @@ const ManageProductDetail = () => {
     let navigate = useNavigate();
     // const idorder = params.idorder
 
-    const [idOrder, setidOrder] = useState(params.idorder);
+    const idOrder=params.idorder;
     const [OrderItem, setOrderItem] = useState([]);
     const [ListProducts, setListProducts] = useState([]);
-    const [listOption, setListOption] = useState([]);
+    // const [listOption, setListOption] = useState([]);
 
     useEffect(() => {
 
