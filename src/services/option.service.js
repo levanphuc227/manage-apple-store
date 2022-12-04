@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const API_URL =process.env.REACT_APP_API_URL;
+// const API_URL =process.env.REACT_APP_API_URL;
 
 
 const getOptionByGroupProduct = (id) => {
 
-  return axios.get(API_URL + `v1/groupproduct/${id}/options`)
+  return axios.get(`/api/v1/groupproduct/${id}/options`)
     .then((response) => {
       return response.data;
     });

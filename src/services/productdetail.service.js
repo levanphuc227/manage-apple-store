@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL =process.env.REACT_APP_API_URL;
+// const API_URL =process.env.REACT_APP_API_URL;
 
 const create = (
   groupProductId,
@@ -9,7 +9,7 @@ const create = (
   option,
   ) => {
     console.log('bug',option)
-  return axios.post(API_URL + `v1/auth/admin/groupproduct/${groupProductId}/productdetail`, {
+  return axios.post(`/api/v1/auth/admin/groupproduct/${groupProductId}/productdetail`, {
                 price,
                 image,
                 option,
