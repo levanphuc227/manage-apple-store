@@ -1,10 +1,10 @@
-import axios from "axios";
-
+// import axios from "axios";
+import httpRequest from "../utils/httpRequest";
 // const API_URL = process.env.REACT_APP_API_URL;
 
 // const API_URL =process.env.REACT_APP_API_URL;
 const register = (username, email, password,securityCode) => {
-  return axios.post( "api/v1/auth/signup", {
+  return httpRequest.post( "api/v1/auth/signup", {
     username,
     email,
     password,
@@ -14,7 +14,7 @@ const register = (username, email, password,securityCode) => {
 };
 
 const login = (username, password) => {
-  return axios
+  return httpRequest
     .post( "api/v1/auth/signin", {
       username,
       password,
@@ -30,7 +30,7 @@ const login = (username, password) => {
 
 const logout = () => {
   localStorage.removeItem("user");
-  return axios.post("api/v1/auth/signout").then((response) => {
+  return httpRequest.post("api/v1/auth/signout").then((response) => {
     return response.data;
   });
 };

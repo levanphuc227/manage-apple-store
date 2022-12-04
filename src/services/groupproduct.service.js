@@ -1,5 +1,5 @@
-import axios from "axios";
-
+// import axios from "axios";
+import httpRequest from "../utils/httpRequest";
 // const API_URL =process.env.REACT_APP_API_URL;
 
 const create = (
@@ -20,7 +20,7 @@ const create = (
     description,
     services,
     specific,)
-  return axios.post("/api/v1/auth/admin/groupproduct", {
+  return httpRequest.post("/api/v1/auth/admin/groupproduct", {
     'categoryId': category,
     name,
     price,
@@ -33,13 +33,13 @@ const create = (
 };
 
 const getAll = () => {
-  return axios.get("/api/v1/groupproducts")
+  return httpRequest.get("/api/v1/groupproducts")
     .then((response) => {
       return response.data;
     });
 };
 const getOne = (id) => {
-  return axios.get(`/api/v1/groupproduct/${id}`)
+  return httpRequest.get(`/api/v1/groupproduct/${id}`)
     .then((response) => {
       return response.data;
     });

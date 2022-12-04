@@ -1,5 +1,5 @@
-import axios from "axios";
-
+// import axios from "axios";
+import httpRequest from "../utils/httpRequest";
 // const API_URL =process.env.REACT_APP_API_URL;
 
 const create = (
@@ -9,7 +9,7 @@ const create = (
   option,
   ) => {
     console.log('bug',option)
-  return axios.post(`/api/v1/auth/admin/groupproduct/${groupProductId}/productdetail`, {
+  return httpRequest.post(`/api/v1/auth/admin/groupproduct/${groupProductId}/productdetail`, {
                 price,
                 image,
                 option,
