@@ -53,6 +53,7 @@ const Register = (props) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [securityCode, setSecurityCode] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -70,6 +71,10 @@ const Register = (props) => {
     const password = e.target.value;
     setPassword(password);
   };
+  const onChangeSecurityCode = (e) => {
+    const securityCode = e.target.value;
+    setSecurityCode(securityCode);
+  };
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -80,7 +85,7 @@ const Register = (props) => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      AuthService.register(username, email, password).then(
+      AuthService.register(username, email, password,securityCode).then(
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
@@ -145,6 +150,17 @@ const Register = (props) => {
                   value={password}
                   onChange={onChangePassword}
                   validations={[required, vpassword]}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="Security Code">Security Code</label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  name="securityCode"
+                  value={securityCode}
+                  onChange={onChangeSecurityCode}
+                  validations={[required]}
                 />
               </div>
 
