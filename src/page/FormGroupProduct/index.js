@@ -89,10 +89,10 @@ const GroupProduct = () => {
         setName(name);
     };
 
-    const onChangeDescription = (e) => {
-        const description = e.target.value;
-        setDescription(description);
-    };
+    // const onChangeDescription = (e) => {
+    //     const description = e.target.value;
+    //     setDescription(description);
+    // };
     const onChangeServices = (e) => {
         const services = e.target.value;
         setServices(services);

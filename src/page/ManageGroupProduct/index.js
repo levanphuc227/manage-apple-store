@@ -20,7 +20,7 @@ const GroupProduct = () => {
 
         GroupProductService.getAll().then((response) => {
             console.log(response)
-            setListGroupProduct(response.data.data);
+            setListGroupProduct(response.data);
         });
     }, []);
     console.log(listGroupProduct)
