@@ -9,9 +9,7 @@ import CategoryService from "../../services/category.service";
 const required = (value) => {
   if (!value) {
     return (
-      <div className="invalid-feedback d-block">
-        This field is required!
-      </div>
+      <div className="invalid-feedback d-block">This field is required!</div>
     );
   }
 };
@@ -69,53 +67,55 @@ const Login = () => {
   };
 
   return (
-    <div className="col-md-12">
-      <div className="card card-container">
-      <h1>create category</h1>
+    <div className="wrap-table">
+      <div className="col-md-12">
+        <div className="card card-container">
+          <h1>Create Category</h1>
 
-        <Form onSubmit={handleSubmit} ref={form}>
-          <div className="form-group">
-            <label htmlFor="category">Category Name</label>
-            <Input
-              type="text"
-              className="form-control"
-              name="category"
-              value={category}
-              onChange={onChangeCategory}
-              validations={[required]}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="description">Description</label>
-            <Input
-              type="text"
-              className="form-control"
-              name="description"
-              value={description}
-              onChange={onChangeDescription}
-              validations={[required]}
-            />
-          </div>
-
-          <div className="form-group">
-            <button className="btn btn-primary btn-block" disabled={loading}>
-              {loading && (
-                <span className="spinner-border spinner-border-sm"></span>
-              )}
-              <span>Create</span>
-            </button>
-          </div>
-
-          {message && (
+          <Form onSubmit={handleSubmit} ref={form}>
             <div className="form-group">
-              <div className="alert alert-danger" role="alert">
-                {message}
-              </div>
+              <label htmlFor="category">Category Name</label>
+              <Input
+                type="text"
+                className="form-control"
+                name="category"
+                value={category}
+                onChange={onChangeCategory}
+                validations={[required]}
+              />
             </div>
-          )}
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
-        </Form>
+
+            <div className="form-group">
+              <label htmlFor="description">Description</label>
+              <Input
+                type="text"
+                className="form-control"
+                name="description"
+                value={description}
+                onChange={onChangeDescription}
+                validations={[required]}
+              />
+            </div>
+
+            <div className="form-group">
+              <button className="btn btn-primary btn-block" disabled={loading}>
+                {loading && (
+                  <span className="spinner-border spinner-border-sm"></span>
+                )}
+                <span>Create</span>
+              </button>
+            </div>
+
+            {message && (
+              <div className="form-group">
+                <div className="alert alert-danger" role="alert">
+                  {message}
+                </div>
+              </div>
+            )}
+            <CheckButton style={{ display: "none" }} ref={checkBtn} />
+          </Form>
+        </div>
       </div>
     </div>
   );
